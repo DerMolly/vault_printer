@@ -1,4 +1,4 @@
-# vault_printer ![pylint 10.00][pylint-badge] [![MIT License][license-badge]](LICENSE) [![PyPI version][pypi-badge]][pypi-project]
+# vault_printer ![pylint 10.00][pylint-badge] [![MIT License][license-badge]](LICENSE.md) [![PyPI version][pypi-badge]][pypi-project]
 vault_printer is a little program to extract a whole kv_store of a [Vault Server][vaultproject] to stdout in markdown.
 This could be used to print it out and store it in a physical safe somewhere. Or at least that's the purpose for which I wrote it.
 
@@ -60,7 +60,7 @@ Maybe I will add some more in the future. If you need another Login Method feel 
 
 This program also uses these environment variables if set
 
-`$VAULT_ADDR`  : the url of the vault server
+`$VAULT_ADDR`  : the url of the vault server  
 `$VAULT_TOKEN` : the token to authenticate with the `--token` login method 
 
 
