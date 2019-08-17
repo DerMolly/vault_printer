@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vault_printer",
-    version="0.1.1k",
+    version="0.1.1",
     author="Philip Molares",
     author_email="philipmolares@yahoo.de",
     description="A program to get all secrets from a vault servers kv_store for printing",
