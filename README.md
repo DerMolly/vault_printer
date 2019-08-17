@@ -66,7 +66,7 @@ This program also uses these environment variables if set
 
 [pylint-badge]:   https://mperlet.github.io/pybadge/badges/10.00.svg
 [license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg
-[pypi-badge]:     https://badge.fury.io/py/vault_printer.svg
+[pypi-badge]:     https://badge.fury.io/py/vault-printer.svg
 [pypi-project]:   https://pypi.org/project/vault_printer/
 [vaultproject]:   https://www.vaultproject.io/
 [pypi]:           https://pypi.org/
