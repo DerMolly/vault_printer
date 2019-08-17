@@ -70,4 +70,4 @@ This program also uses these environment variables if set
 [pypi-project]:   https://pypi.org/project/vault_printer/
 [vaultproject]:   https://www.vaultproject.io/
 [pypi]:           https://pypi.org/
-[tracker]:        https://github.com/DerMolly/vault_printer/issue
+[tracker]:        https://github.com/DerMolly/vault_printer/issues
