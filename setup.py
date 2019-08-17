@@ -21,7 +21,7 @@ setuptools.setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     license="MIT",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/DerMolly/vault_printer",
     packages=setuptools.find_packages(),
     python_requires='>=3',
     classifiers=[
