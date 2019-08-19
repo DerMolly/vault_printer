@@ -89,8 +89,10 @@ def main() -> None:
     the main function loop
     :return: None
     """
-    parser = ArgumentParser(description='get all secrets from a vault' +
-                            'servers kv_store for printing')
+    parser = ArgumentParser(description=description)
+    parser.add_argument('--version',
+                        action='version',
+                        version=version)
     parser.add_argument('-v', "--verbose",
                         help='increase verbosity',
                         action='store_true',
