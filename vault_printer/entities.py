@@ -6,7 +6,7 @@ from typing import List, Dict
 
 from jinja2 import Template
 
-TEMPLATE: Template = Template(u"""## {{header}}
+TEMPLATE: Template = Template(u"""#### {{header}}
 {% for key, value in dict.items() %}
 {{"  - %s" | format(key)}}
 {{"    - %s" | format(value)}}{% endfor %}\n\n\n""")
@@ -56,9 +56,11 @@ class Folder(Object):
         start function for the recursive generation of the table of contents
         :return: the table of contents
         """
-        output = "# Table of Contents\n\n" + self.name + "\n"
+        output = "### Table of Contents\n\n```\n"
+        output = output + "{}\n".format(self.name)
         for i, obj in enumerate(self.content):
             output += obj.toc_rec("  ", i is len(self.content)-1)
+        output = output + "```\n"
         return output
 
     def toc_rec(self, indent: str, child: bool) -> str:
@@ -81,7 +83,7 @@ class Folder(Object):
         start function for the recursive generation of the list of all entries in the kv store
         :return: the list of all entries in the kv store
         """
-        output = "# Content of '{}'\n\n".format(self.name)
+        output = "### Content of '{}'\n\n".format(self.name)
         output += self.output("", TEMPLATE)
         return output
 

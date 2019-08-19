@@ -13,7 +13,7 @@ from typing import List
 
 from hvac import Client
 
-from vault_printer import description, version
+from vault_printer import description, name, url, version
 from vault_printer.entities import Entity, Folder, Object
 from vault_printer.config import Config
 
@@ -63,25 +63,25 @@ def get_folder_content(client: Client, path: str, mount_point: str) -> List[Obje
     return content
 
 
-def get_entity(client: Client, path: str, name: str, mount_point: str) -> Entity:
+def get_entity(client: Client, path: str, entity_name: str, mount_point: str) -> Entity:
     """
     get an entity object from  the api
     :param client: the client to connect with
     :param path: the path in the kv_store to the entity in question
-    :param name: the name (for easy inserting in the entity object)
+    :param entity_name: the name (for easy inserting in the entity object)
     :param mount_point: the kv_store from which to retrieve the entity
     :return: an entity object
     """
     data = {}
     try:
         data = client.secrets.kv.v2.read_secret_version(
-            path=path + "/" + name,
+            path=path + "/" + entity_name,
             mount_point=mount_point
         )['data']
     except ValueError as err:
         log.error("Error: %s", err)
     log.info("found an entity %s with ", str(data['data'].keys()))
-    return Entity(name, data)
+    return Entity(entity_name, data)
 
 
 def main() -> None:
@@ -143,6 +143,8 @@ def main() -> None:
     config.log()
 
     folder: Folder = get_base_folder(client, config.kv_store)
+
+    print("`created by {name} {version} ({url})`\n".format(name=name, version=version, url=url))
 
     print(folder.toc())
 
