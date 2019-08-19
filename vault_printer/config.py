@@ -28,6 +28,8 @@ class Config:
         self.kv_store = kv_store
         if not url.strip():
             log.error("No url provided")
+            log.error("you can either specify this via $VAULT_ADDR"
+                      "or as the first parameter to this program")
             log.error("Aborting")
             exit(2)
         else:
