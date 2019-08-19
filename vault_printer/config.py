@@ -7,6 +7,7 @@ from enum import Enum
 from getpass import GetPassWarning, getpass
 
 from hvac import Client
+from hvac.exceptions import InvalidPath
 
 
 class Method(Enum):
@@ -155,7 +156,7 @@ class Config:
                 try:
                     client.token = self.token
                     client.login(self.url, True)
-                except ValueError as err:
+                except (InvalidPath, ValueError) as err:
                     log.error("Token Login failed: %s", err)
                     exit(2)
 
