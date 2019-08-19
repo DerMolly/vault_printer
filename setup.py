@@ -3,7 +3,7 @@ the setup to install vault_printer
 """
 import setuptools
 
-from vault_printer import description, name, version
+from vault_printer import description, name, url, version
 
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
@@ -23,7 +23,7 @@ setuptools.setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     license="MIT",
-    url="https://github.com/DerMolly/vault_printer",
+    url=url,
     packages=setuptools.find_packages(),
     python_requires='>=3',
     classifiers=[
