@@ -13,6 +13,7 @@ from typing import List
 
 from hvac import Client
 
+from vault_printer import description, version
 from vault_printer.entities import Entity, Folder, Object
 from vault_printer.config import Config
 

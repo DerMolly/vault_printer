@@ -3,15 +3,17 @@ the setup to install vault_printer
 """
 import setuptools
 
+from vault_printer import description, name, version
+
 with open("README.md", "r") as fh:
     LONG_DESCRIPTION = fh.read()
 
 setuptools.setup(
-    name="vault_printer",
-    version="0.1.1",
+    name=name,
+    version=version,
     author="Philip Molares",
     author_email="philipmolares@yahoo.de",
-    description="A program to get all secrets from a vault servers kv_store for printing",
+    description=description,
     entry_points={
         'console_scripts': [
             "vault_printer = vault_printer.main:main"
