@@ -15,8 +15,8 @@ class Method(Enum):
     enum to represent login methods
     """
     NotNeeded = 1
-    Token = 1
-    LDAP = 2
+    Token = 2
+    LDAP = 3
 
 
 class Config:
