@@ -5,6 +5,7 @@ import logging as log
 import os
 from enum import Enum
 from getpass import GetPassWarning, getpass
+from pathlib import Path
 
 from hvac import Client
 from hvac.exceptions import InvalidPath
@@ -33,8 +34,9 @@ class Config:
             log.error("Aborting...")
             exit(2)
         else:
-            self.url = url
-        if os.path.isfile("~/.vault-token"):
+            self.url = url.strip()
+        vault_token: Path = Path(os.path.expanduser("~") + "/.vault_token")
+        if vault_token.is_file():
             log.info("found ~/.vault-token")
             self.authenticated = True
         else:
@@ -149,7 +151,7 @@ class Config:
                 log.info("trying to login with LDAP")
                 try:
                     client.auth.ldap.login(self.username, self.password)
-                except ValueError as err:
+                except (InvalidPath, ValueError) as err:
                     log.error("LDAP Login failed: %s", err)
                     exit(2)
 
