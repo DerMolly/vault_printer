@@ -21,22 +21,29 @@ E.g extract kv_store `test` from `vault.example.com` and login via ldap:
 ### Help
 
 ```
-
-usage: vault_printer [-h] [-v] [--ldap | --token] [--username USERNAME]
+usage: vault_printer [-h] [--version] [-v] [--no-toc] [--no-content]
+                     [--ldap | --token] [--username USERNAME]
                      [--password PASSWORD] [--tokenLogin TOKENLOGIN]
                      [url] kv_store
 
-get all secrets from a vaultservers kv_store for printing
-
-positional arguments:
-  url                   the url of the vault server
-  kv_store              the kv store to export from
+A program to get all secrets from a vault servers kv_store for printing
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show program's version number and exit
   -v, --verbose         increase verbosity
   --ldap                login via ldap
   --token               login via token
+
+server parameter:
+  url                   the url of the vault server
+  kv_store              the kv store to export from
+
+output configuration:
+  --no-toc              don't print the toc
+  --no-content          don't print the content
+
+login parameter:
   --username USERNAME, -u USERNAME
                         the username with which to login, if omitted you'll be
                         asked
