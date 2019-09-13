@@ -97,39 +97,58 @@ def main() -> None:
                         help='increase verbosity',
                         action='store_true',
                         default=False)
-    parser.add_argument('url',
-                        help='the url of the vault server',
-                        type=str,
-                        nargs='?',
-                        default=os.environ.get('VAULT_ADDR', ''))
-    parser.add_argument('kv_store',
-                        help='the kv store to export from',
-                        type=str)
+
+    server_group = parser.add_argument_group(title='server parameter')
+    server_group.add_argument('url',
+                              help='the url of the vault server',
+                              type=str,
+                              nargs='?',
+                              default=os.environ.get('VAULT_ADDR', ''))
+    server_group.add_argument('kv_store',
+                              help='the kv store to export from',
+                              type=str)
+
+    output_group = parser.add_argument_group(title="output configuration")
+    output_group.add_argument('--no-toc',
+                              help='don\'t print the toc',
+                              action='store_true',
+                              default=False)
+    output_group.add_argument('--no-content',
+                              help='don\'t print the content',
+                              action='store_true',
+                              default=False)
 
     # login method group
-    group = parser.add_mutually_exclusive_group(required=False)
-    group.add_argument('--ldap',
-                       help='login via ldap',
-                       action='store_true')
-    group.add_argument('--token',
-                       help='login via token',
-                       action='store_true')
+    login_group = parser.add_mutually_exclusive_group(required=False)
+    login_group.add_argument('--ldap',
+                             help='login via ldap',
+                             action='store_true')
+    login_group.add_argument('--token',
+                             help='login via token',
+                             action='store_true')
 
-    parser.add_argument('--username', '-u',
-                        help="the username with which to login, if omitted you\'ll be asked")
-    parser.add_argument('--password', '-p',
-                        help='the password to login, if omitted you\'ll be asked')
-    parser.add_argument('--tokenLogin', '-t',
-                        help='the  token to login, if omitted you\'ll be asked',
-                        default=os.environ.get('VAULT_TOKEN', ''))
+    login_parameter_group = parser.add_argument_group(title='login parameter')
+    login_parameter_group.add_argument('--username', '-u',
+                                       help="the username with which to login, "
+                                       + "if omitted you\'ll be asked")
+    login_parameter_group.add_argument('--password', '-p',
+                                       help='the password to login, if omitted you\'ll be asked')
+    login_parameter_group.add_argument('--tokenLogin', '-t',
+                                       help='the  token to login, if omitted you\'ll be asked',
+                                       default=os.environ.get('VAULT_TOKEN', ''))
 
-    args = parser.parse_args()
+    args = parser.parse_intermixed_args()
 
     if args.verbose:
         log.basicConfig(format="%(message)s", level=log.DEBUG)
         log.info("Verbose output.")
     else:
         log.basicConfig(format="%(message)s")
+
+    if args.no_toc and args.no_content:
+        log.error("the usage of --no-toc and --no-content together does not produce any output")
+        log.error("Aborting...")
+        exit(2)
 
     config: Config = Config(args.url, args.kv_store)
 
@@ -146,9 +165,11 @@ def main() -> None:
 
     print("`created by {name} {version} ({url})`\n".format(name=name, version=version, url=url))
 
-    print(folder.toc())
+    if not args.no_toc:
+        print(folder.toc())
 
-    print(folder.print())
+    if not args.no_content:
+        print(folder.print())
 
 
 if __name__ == "__main__":
