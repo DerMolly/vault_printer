@@ -1,4 +1,4 @@
-# vault_printer ![pylint 10.00][pylint-badge] [![MIT License][license-badge]](LICENSE.md) [![PyPI version][pypi-badge]][pypi-project]
+# vault_printer ![pylint 10.00][pylint-badge] [![MIT License][license-badge]](LICENSE.md) [![PyPI version][pypi-badge]][pypi-project] [![python version][pypi-python]][pypi-project]
 vault_printer is a little program to extract a whole kv_store of a [Vault Server][vaultproject] to stdout in markdown.
 This could be used to print it out and store it in a physical safe somewhere. Or at least that's the purpose for which I wrote it.
 
@@ -75,6 +75,7 @@ This program also uses these environment variables if set
 [license-badge]:  https://img.shields.io/badge/license-MIT-007EC7.svg
 [pypi-badge]:     https://badge.fury.io/py/vault-printer.svg
 [pypi-project]:   https://pypi.org/project/vault_printer/
+[pypi-python]:    https://img.shields.io/pypi/pyversions/vault-printer
 [vaultproject]:   https://www.vaultproject.io/
 [pypi]:           https://pypi.org/
 [tracker]:        https://github.com/DerMolly/vault_printer/issues
