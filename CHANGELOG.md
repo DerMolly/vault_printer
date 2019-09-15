@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.1
+
+- updated README
+- added CI
+
 ## 0.3.0
 
 - added `--no-toc`
