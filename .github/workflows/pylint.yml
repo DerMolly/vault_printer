@@ -1,15 +1,15 @@
-name: Python package
+name: pylint
 
 on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, ubuntu-16.04, windows-latest, windows-2016, macOS-latest]
     strategy:
-      max-parallel: 4
+      max-parallel: 5
       matrix:
-        python-version: [3.5, 3.6, 3.7]
+        python-version: [3.7, 3.8]
 
     steps:
     - uses: actions/checkout@v1
